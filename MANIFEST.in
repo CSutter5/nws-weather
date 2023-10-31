@@ -1,0 +1,11 @@
+# Include the README file
+include README.md
+include LICENSE
+
+# Include all Python source files
+recursive-include NWS_Weather *.py
+
+# Exclude any compiled Python files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude __pycache__
