@@ -13,6 +13,6 @@ setup(
     author='Colin Sutter',
     author_email='contact@csutter.dev',
     description='A package for retrieving weather data from the National Weather Service',
-    long_description=open('README.md').read(),
+    long_description='A package for retrieving weather data from the National Weather Service',
     url='https://github.com/Pizzarules668/NWS-Weather',
 )
