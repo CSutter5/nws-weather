@@ -24,11 +24,13 @@ def predicted_weather(**kwargs) -> List[forcast]:
     elif 'zipcode' in kwargs:
         grid = get_forecast_grid_zipcode(kwargs['zipcode'])
         
+    else:
+        raise Exception("No valid arguments given\nYou need to either supply a zipcode, lat/lon pair, or a gridId and gridX/Y Pair")
+        
     r = requests.get(f"https://api.weather.gov/gridpoints/{grid[0]}/{grid[1]},{grid[2]}/forecast/hourly")
     
     if r.status_code != 200:
-        print(r)
-        raise Exception(f"Error getting predicted weather")
+        raise Exception(f"Error getting predicted weather\nStatus Code: {r.status_code}\nGrid ID: {grid}, Grid X: {grid[1]}, Grid Y: {grid[2]}")
     
     forcasts = []
     
@@ -49,14 +51,12 @@ def get_forecast_grid(lat: int, lon: int) -> (str, int, int):
             r.json()['properties']['gridY']
         )
 
-    print(r)
-    raise Exception(f"Error getting forecast grid")
+    raise Exception(f"Error getting forecast grid\nStatus Code: {r.status_code}\nLat: {lat}, Lon: {lon}")
     
 
 def get_forecast_grid_zipcode(zipcode: str) ->  (str, int, int):
     
     geolocator = Nominatim(user_agent="zipcode_converter")
     location = geolocator.geocode(zipcode)
-    print(location.latitude, location.longitude)
     
     return get_forecast_grid(location.latitude, location.longitude)

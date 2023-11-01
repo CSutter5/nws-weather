@@ -27,11 +27,13 @@ def current_weather(**kwargs) -> List[Observation]:
     elif 'zipcode' in kwargs:
         station = get_station_zipcode(kwargs['zipcode'])
         
+    else:
+        raise Exception("No valid arguments given\nYou need to either supply a zipcode, lat/lon pair, or a station")
+        
     r = requests.get(f"https://api.weather.gov/stations/{station}/observations")
     
     if r.status_code != 200:
-        print(r)
-        raise Exception(f"Error getting current weather")
+        raise Exception(f"Error getting current weather\nStatus Code: {r.status_code}\nStation: {station}")
     
     observations = []
     
@@ -66,7 +68,7 @@ def get_station(lat: float, lon: float) -> str:
     
     print(r)
     print(observationStationR)
-    raise Exception(f"Error getting station for lat/lon: {lat}, {lon}")
+    raise Exception(f"Error getting station\nStatus Code: {r.status_code}\nLat: {lat}, Lon: {lon}")
     
 
 def get_station_zipcode(zipcode: str) -> str:
