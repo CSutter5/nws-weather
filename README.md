@@ -37,7 +37,7 @@ for w in weather:
     print(w)
 ```
 
-Station is the NWS observation station ID. You can find the station ID for your location [here](https://w1.weather.gov/xml/current_obs/seek.php?state=ny&Find=Find). </br>
+Station is the NWS observation station ID. You can find the station ID for your location [here](https://w1.weather.gov/xml/currcleaent_obs/seek.php?state=ny&Find=Find). </br>
 Lat, Lon is the latitude and longitude of the location you want the weather for. </br>
 Zipcode is the zipcode of the location you want the weather for. </br>
 GridX, GridY, GridId is the grid coordinates and ID of the location you want the weather for. </br>

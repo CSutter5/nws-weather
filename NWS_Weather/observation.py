@@ -27,6 +27,19 @@ Layer {i + 1}:
             
         return s
 
+def checkIfNone(value):
+    """Returns 0 if the value is None
+
+    Args:
+        value: Any value you want to check to see if it is None
+
+    Returns:
+        0 if the value is None, otherwise the value 
+    """
+    if value == None:
+        return 0
+    return value
+
 class Observation:
     timestamp: datetime
     
@@ -37,7 +50,7 @@ class Observation:
     
     temperature: float
     dewpoint: float
-    windDirection: str
+    windDirection: int
     windSpeed: float
     windGust: float
     barometricPressure: float
@@ -54,6 +67,7 @@ class Observation:
     
     cloudLayers: CloudLayers
     
+    
     def __init__(self, data: dict):
         """ Initizes the observation class
 
@@ -63,29 +77,30 @@ class Observation:
         
         self.timestamp = datetime.strptime(data['properties']['timestamp'], "%Y-%m-%dT%H:%M:%S%z")
         
-        self.rawMessage = data['properties']['rawMessage']
-        self.textDescription = data['properties']['textDescription']
-        self.icon = data['properties']['icon']
+        self.rawMessage = checkIfNone(data['properties']['rawMessage'])
+        self.textDescription = checkIfNone(data['properties']['textDescription'])
+        self.icon = checkIfNone(data['properties']['icon'])
         self.presentWeather = PresentWeather(data['properties']['presentWeather'])
         
-        self.temperature = data['properties']['temperature']['value']
-        self.dewpoint = data['properties']['dewpoint']['value']
-        self.windDirection = data['properties']['windDirection']['value']
-        self.windSpeed = data['properties']['windSpeed']['value']
-        self.windGust = data['properties']['windGust']['value']
-        self.barometricPressure = data['properties']['barometricPressure']['value']
-        self.seaLevelPressure = data['properties']['seaLevelPressure']['value']
-        self.visibility = data['properties']['visibility']['value']
-        self.maxTemperatureLast24Hours = data['properties']['maxTemperatureLast24Hours']['value']
-        self.minTemperatureLast24Hours = data['properties']['minTemperatureLast24Hours']['value']
-        self.precipitationLastHour = data['properties']['precipitationLastHour']['value']
-        self.precipitationLast3Hours = data['properties']['precipitationLast3Hours']['value']
-        self.precipitationLast6Hours = data['properties']['precipitationLast6Hours']['value']
-        self.relativeHumidity = data['properties']['relativeHumidity']['value']
-        self.windChill = data['properties']['windChill']['value']
-        self.heatIndex = data['properties']['heatIndex']['value']
+        self.temperature = checkIfNone(data['properties']['temperature']['value'])
+        self.dewpoint = checkIfNone(data['properties']['dewpoint']['value'])
+        self.windDirection = checkIfNone(data['properties']['windDirection']['value'])
+        self.windSpeed = checkIfNone(data['properties']['windSpeed']['value'])
+        self.windGust = checkIfNone(data['properties']['windGust']['value'])
+        self.barometricPressure = checkIfNone(data['properties']['barometricPressure']['value'])
+        self.seaLevelPressure = checkIfNone(data['properties']['seaLevelPressure']['value'])
+        self.visibility = checkIfNone(data['properties']['visibility']['value'])
+        self.maxTemperatureLast24Hours = checkIfNone(data['properties']['maxTemperatureLast24Hours']['value'])
+        self.minTemperatureLast24Hours = checkIfNone(data['properties']['minTemperatureLast24Hours']['value'])
+        self.precipitationLastHour = checkIfNone(data['properties']['precipitationLastHour']['value'])
+        self.precipitationLast3Hours = checkIfNone(data['properties']['precipitationLast3Hours']['value'])
+        self.precipitationLast6Hours = checkIfNone(data['properties']['precipitationLast6Hours']['value'])
+        self.relativeHumidity = checkIfNone(data['properties']['relativeHumidity']['value'])
+        self.windChill = checkIfNone(data['properties']['windChill']['value'])
+        self.heatIndex = checkIfNone(data['properties']['heatIndex']['value'])
         
         self.cloudLayers = CloudLayers(data['properties']['cloudLayers'])
+        
         
     def __str__(self):
         return f"""{self.timestamp}

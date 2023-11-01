@@ -1,5 +1,19 @@
 from datetime import datetime
 
+
+def checkIfNone(value):
+    """Returns 0 if the value is None
+
+    Args:
+        value: Any value you want to check to see if it is None
+
+    Returns:
+        0 if the value is None, otherwise the value 
+    """
+    if value == None:
+        return 0
+    return value
+
 class forcast:
     startTime: datetime
     endTime: datetime
@@ -26,13 +40,13 @@ class forcast:
         self.startTime = datetime.strptime(data['startTime'], "%Y-%m-%dT%H:%M:%S%z")
         self.endTime = datetime.strptime(data['endTime'], "%Y-%m-%dT%H:%M:%S%z")
         
-        self.isDaytime = data['isDaytime']
-        self.temperature = data['temperature']
-        self.temperatureTrend = data['temperatureTrend']
-        self.probabilityOfPrecipitation = data['probabilityOfPrecipitation']["value"]
-        self.dewPoint = data['dewpoint']["value"]
+        self.isDaytime = checkIfNone(data['isDaytime'])
+        self.temperature = checkIfNone(data['temperature'])
+        self.temperatureTrend = checkIfNone(data['temperatureTrend'])
+        self.probabilityOfPrecipitation = checkIfNone(data['probabilityOfPrecipitation']["value"])
+        self.dewPoint = checkIfNone(data['dewpoint']["value"])
         self.windSpeed = int(data['windSpeed'].split(" ")[0])
-        self.windDirection = data['windDirection']
+        self.windDirection = checkIfNone(data['windDirection'])
         
         self.icon = data['icon']
         self.shortForecast = data['shortForecast']
