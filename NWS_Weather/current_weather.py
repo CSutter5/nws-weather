@@ -9,6 +9,7 @@ def current_weather(**kwargs) -> List[Observation]:
     """Get the current weather for a given location
 
     Raises:
+        Exception: Argument Error, gets raised if no valid arguments are given
         Exception: Could not get the current weather for the given location
 
     Returns:

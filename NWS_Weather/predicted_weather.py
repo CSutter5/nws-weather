@@ -6,6 +6,15 @@ from geopy.geocoders import Nominatim
 from .forcast import forcast
 
 def predicted_weather(**kwargs) -> List[forcast]:
+    """Get the predicted weather for a given location
+
+    Raises:
+        Exception: Argument Error, gets raised if no valid arguments are given
+        Exception: Could not get the predicted weather for the given location
+
+    Returns:
+        List[forcast]: List of forcasted data points
+    """
 
     grid = ("", 0, 0)
 
