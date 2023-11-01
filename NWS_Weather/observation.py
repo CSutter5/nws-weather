@@ -59,8 +59,8 @@ class Observation:
     max_temperature_last_24_hours: float
     min_temperature_last_24_hours: float
     precipitation_last_hour: float
-    precipitation_last3_hours: float
-    precipitation_last6_hours: float
+    precipitation_last_3_hours: float
+    precipitation_last_6_hours: float
     relative_humidity: float
     wind_chill: float
     heat_index: float
@@ -92,8 +92,8 @@ class Observation:
         self.max_temperature_last_24_hours  = check_if_none(data['properties']['maxTemperatureLast24Hours']['value'])
         self.min_temperature_last_24_hours  = check_if_none(data['properties']['minTemperatureLast24Hours']['value'])
         self.precipitation_last_hour        = check_if_none(data['properties']['precipitationLastHour']['value'])
-        self.precipitation_last3_hours      = check_if_none(data['properties']['precipitationLast3Hours']['value'])
-        self.precipitation_last6_hours      = check_if_none(data['properties']['precipitationLast6Hours']['value'])
+        self.precipitation_last_3_hours      = check_if_none(data['properties']['precipitationLast3Hours']['value'])
+        self.precipitation_last_6_hours      = check_if_none(data['properties']['precipitationLast6Hours']['value'])
         self.relative_humidity              = check_if_none(data['properties']['relativeHumidity']['value'])
         self.wind_chill                     = check_if_none(data['properties']['windChill']['value'])
         self.heat_index                     = check_if_none(data['properties']['heatIndex']['value'])
