@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
 
+
 setup(
     name='NWS_Weather',
-    version='1',
+    version='1.0.1',
     packages=find_packages(),
     install_requires=[
         'requests',
@@ -12,5 +13,6 @@ setup(
     author='Colin Sutter',
     author_email='contact@csutter.dev',
     description='A package for retrieving weather data from the National Weather Service',
+    long_description=open('README.md').read(),
     url='https://github.com/Pizzarules668/NWS-Weather',
 )
