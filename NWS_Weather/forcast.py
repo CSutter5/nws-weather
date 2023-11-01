@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-def checkIfNone(value):
+def check_if_none(value):
     """Returns 0 if the value is None
 
     Args:
@@ -15,20 +15,20 @@ def checkIfNone(value):
     return value
 
 class forcast:
-    startTime: datetime
-    endTime: datetime
+    start_time: datetime
+    end_time: datetime
     
-    isDaytime: bool
+    is_daytime: bool
     temperature: float
-    temperatureTrend: str
-    probabilityOfPrecipitation: int
-    dewPoint: float
-    windSpeed: int
-    windDirection: str
+    temperature_trend: str
+    probability_of_precipitation: int
+    dew_point: float
+    wind_speed: int
+    wind_direction: str
     
     icon: str
-    shortForecast: str
-    detailedForecast: str
+    short_forecast: str
+    detailed_forecast: str
     
     def __init__(self, data: dict):
         """ Initizes the forcast class
@@ -37,30 +37,30 @@ class forcast:
             data (dict): Data from the NWS API
         """
         
-        self.startTime = datetime.strptime(data['startTime'], "%Y-%m-%dT%H:%M:%S%z")
-        self.endTime = datetime.strptime(data['endTime'], "%Y-%m-%dT%H:%M:%S%z")
+        self.start_time = datetime.strptime(data['startTime'], "%Y-%m-%dT%H:%M:%S%z")
+        self.end_time   = datetime.strptime(data['endTime'], "%Y-%m-%dT%H:%M:%S%z")
         
-        self.isDaytime = checkIfNone(data['isDaytime'])
-        self.temperature = checkIfNone(data['temperature'])
-        self.temperatureTrend = checkIfNone(data['temperatureTrend'])
-        self.probabilityOfPrecipitation = checkIfNone(data['probabilityOfPrecipitation']["value"])
-        self.dewPoint = checkIfNone(data['dewpoint']["value"])
-        self.windSpeed = int(data['windSpeed'].split(" ")[0])
-        self.windDirection = checkIfNone(data['windDirection'])
+        self.is_daytime                     = check_if_none(data['isDaytime'])
+        self.temperature                    = check_if_none(data['temperature'])
+        self.temperature_trend              = check_if_none(data['temperatureTrend'])
+        self.probability_of_precipitation   = check_if_none(data['probabilityOfPrecipitation']["value"])
+        self.dew_point                      = check_if_none(data['dewpoint']["value"])
+        self.wind_speed                     = int(data['windSpeed'].split(" ")[0])
+        self.wind_direction                 = check_if_none(data['windDirection'])
         
         self.icon = data['icon']
-        self.shortForecast = data['shortForecast']
-        self.detailedForecast = data['detailedForecast']
+        self.short_forecast = data['shortForecast']
+        self.detailed_forecast = data['detailedForecast']
         
         
     def __str__(self):
-        return f"""{self.startTime} - {self.endTime}
-{self.shortForecast}
-{self.detailedForecast}
+        return f"""{self.start_time} - {self.end_time}
+{self.short_forecast}
+{self.detailed_forecast}
 Temperature: {self.temperature}°F
-Temperature Trend: {self.temperatureTrend}
-Probability of Precipitation: {self.probabilityOfPrecipitation}%
-Dew Point: {self.dewPoint}°F
-Wind Speed: {self.windSpeed} mph
-Wind Direction: {self.windDirection}
+Temperature Trend: {self.temperature_trend}
+Probability of Precipitation: {self.probability_of_precipitation}%
+Dew Point: {self.dew_point}°F
+Wind Speed: {self.wind_speed} mph
+Wind Direction: {self.wind_direction}
 """

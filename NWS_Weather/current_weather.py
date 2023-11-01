@@ -66,8 +66,6 @@ def get_station(lat: float, lon: float) -> str:
         if observationStationR.status_code == 200:
             return observationStationR.json()['features'][0]['properties']['stationIdentifier']
     
-    print(r)
-    print(observationStationR)
     raise Exception(f"Error getting station\nStatus Code: {r.status_code}\nLat: {lat}, Lon: {lon}")
     
 
