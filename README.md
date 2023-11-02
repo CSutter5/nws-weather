@@ -37,10 +37,28 @@ for w in weather:
     print(w)
 ```
 
-Station is the NWS observation station ID. You can find the station ID for your location [here](https://w1.weather.gov/xml/currcleaent_obs/seek.php?state=ny&Find=Find). </br>
-Lat, Lon is the latitude and longitude of the location you want the weather for. </br>
-Zipcode is the zipcode of the location you want the weather for. </br>
-GridX, GridY, GridId is the grid coordinates and ID of the location you want the weather for. </br>
+To get the active alerts for a given location, use the ```active_alerts``` function:
+
+```python
+alerts = active_alerts(area="WI")
+alerts = active_alerts(lat=40.64, lon=-73.76)
+alerts = active_alerts(region="GL")
+alerts = active_alerts(zone="NYZ072")
+alerts = active_alerts(region_type="land")
+alerts = active_alerts(zipcode=11430)
+
+for a in alerts:
+    print(a)
+```
+
+- `Station` is the NWS observation station ID. You can find the station ID for your location [here](https://w1.weather.gov/xml/currcleaent_obs/seek.php?state=ny&Find=Find). </br>
+- `Lat`, `Lon` is the latitude and longitude of the location you want the weather for. </br>
+- `Zipcode` is the zipcode of the location you want the weather for. </br>
+- `GridX`, `GridY`, `GridId` is the grid coordinates and ID of the location you want the weather for. </br>
+- `Area` is the state you want the active alerts for. </br>
+- `Region` is the region you want the active alerts for. (Can only be "AL", "AT", "GL", "GM", "PA", "PI") </br>
+- `Zone` is the zone id you want the active alerts for [you can find them here](https://www.weather.gov/pimar/PubZone). </br>
+- `Region_type` is the region type you want the active alerts for. (Can only be "land" or "marine") </br>
 
 ### Observation object
 The observation object contains the following attributes:
@@ -92,3 +110,32 @@ forcast.icon                            # The icon that represents the forcasted
 forcast.short_forecast      # The short forcast
 forcast.detailed_forecast   # The detailed forcast
 ```
+
+### Alert object
+The alert object contains the following attributes:
+
+```python
+alert.id                # the alert id
+alert.area_desc         # the area description
+alert.same_code         # the same code
+alert.ugc_code          # the Universal Geographic Code 
+alert.affected_zoned    # the zones affected by the alert
+
+alert.sent      # the time the alert was sent
+alert.effective # the time the alert when into effect
+alert.onset     # the expected time of the beginning of the subject event of the alert message.
+alert.expires   # the time the alert expires
+alert.ends      # the time the alert ends
+
+alert.status        # the status of the alert
+alert.message_type  # the message type of the alert
+alert.category      # the category of the alert
+alert.severity      # the severity of the alert
+alert.certainty     # the certainty of the alert
+alert.urgency       # the urgency of the alert
+alert.event         # the event of the alert
+
+alert.headline      # the headline of the alert
+alert.description   # the description of the alert
+alert.instruction   # instructions to follow for the alert
+alert.response      # the way to respond to the alert
