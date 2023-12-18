@@ -126,4 +126,4 @@ Relative Humidity: {self.relative_humidity} %
 Wind Chill: {self.wind_chill} C
 Heat Index: {self.heat_index} C
 
-{self.cloudLayers}"""
+{self.cloud_layers}"""
