@@ -7,7 +7,15 @@ class PresentWeather:
         self.data = data
 
     def __str__(self):
-        return ", ".join(self.data)
+        if type(self.data) != dict:
+            return "No Present Weather"
+        
+        str = "Present Weather:"
+        
+        for key in self.data.keys():
+            str += f"{key}: {self.data[key]['value']}"
+        
+        return str
 
 class CloudLayers:
     layers: list
@@ -102,8 +110,8 @@ class Observation:
         self.cloud_layers    = CloudLayers(data['properties']['cloudLayers'])
         
     def __str__(self):
-        return f"""{self.timestamp}
-
+        return f"""{self.timestamp.strftime("%m/%d/%Y, %H:%M:%S")}
+    
 {self.raw_message}
 {self.text_description}
 {self.icon}
